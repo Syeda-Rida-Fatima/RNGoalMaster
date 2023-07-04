@@ -1,20 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function App() {
+  const [eneteredText, settext] = useState("")
+  const [list, setlist] = useState([])
+  const handleTextChange = (eneteredText) => {
+    settext(eneteredText)
+  }
+  const handlelistadd = () => {
+    setlist = (list) => {
+      [eneteredText, ...list]
+    }
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <View>
+        <TextInput style={styles.input} placeholder=" ADD COURSE GOALS" onChange={handleTextChange} />
+        <Button title="ADD GOAL" />
+
+      </View>
+      <View>
+        <Text>{list.map((goal) => { console.log(goal) })}</Text>
+
+      </View>
+
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  input: {
+    paddingTop: 50
+
+  }
 });
